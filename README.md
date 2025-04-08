@@ -1,4 +1,6 @@
-# ESM2-FA-Training: A Framework for Training ESM-2 Models with FlashAttention
+# PSALM-2
+
+## ESM2-FA-Training: A Framework for Training ESM-2 Models with FlashAttention
 
 This repository provides **a complete workflow for training ESM-2 models** at various sizes using **FlashAttention** (implementation from [FAPLM](https://github.com/pengzhangzhi/faplm/tree/main)). It includes:
 - **FASTA file preprocessing**: Converts raw protein sequences into tokenized, batched, and padded datasets.
