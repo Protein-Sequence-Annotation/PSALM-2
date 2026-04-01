@@ -271,8 +271,10 @@ def load_model_with_startup(
     model_name: str,
     device: str,
     extra_setup_callback=None,
+    show_banner: bool = True,
 ) -> PSALM:
-    _print_startup_banner()
+    if show_banner:
+        _print_startup_banner()
     print(section_header("LOADING"), flush=True)
     print(
         "   " + kv_line("Requested device:", device, label_width=18, width=TERMINAL_WIDTH - 3),
@@ -415,6 +417,7 @@ def main() -> None:
     model = load_model_with_startup(
         model_name=args.model_name,
         device=args.device,
+        show_banner=False,
     )
     run_scan_from_args(model, args)
 

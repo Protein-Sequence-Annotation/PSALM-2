@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "protein-sequence-annotation"
-version = "2.1.9"
+version = "2.1.12"
 description = "Protein sequence domain annotation with PSALM."
 readme = "README.md"
 requires-python = ">=3.10"

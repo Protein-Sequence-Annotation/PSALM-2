@@ -40,7 +40,7 @@ def format_evalue(value: float) -> str:
 
 
 def format_score(value: float) -> str:
-    return f"{value:.3f}"
+    return f"{value:.2f}"
 
 
 def build_hit_rows(
@@ -126,7 +126,7 @@ def append_hits_tsv_rows(handle: TextIO, hit_rows: List[HitRow]) -> None:
             str(row.start),
             str(row.stop),
             row.model,
-            str(row.len_frac),
+            f"{row.len_frac:.2f}",
             row.status,
         ]
         handle.write("\t".join(values) + "\n")
@@ -251,13 +251,13 @@ def render_scan_output(
                     if nested_key in nested_components:
                         components = nested_components[nested_key]
                         print(
-                            f"Domain {i}: score={row.score:.3f} bit={bit_score:.2f} "
+                            f"Domain {i}: score={row.score:.2f} bit={bit_score:.2f} "
                             f"bias={bias:.2f} len={len_ratio:.2f} [nested]"
                         )
 
                         for comp_idx, (comp_start, comp_stop, cbm_c, bit_c, len_c, bias_c, status_c) in enumerate(components, 1):
                             print(
-                                f"  Component {comp_idx}: score={cbm_c:.3f} bit={bit_c:.2f} "
+                                f"  Component {comp_idx}: score={cbm_c:.2f} bit={bit_c:.2f} "
                                 f"bias={bias_c:.2f} len={len_c:.2f} {status_c}"
                             )
                             region_seq = sequence[comp_start - 1:comp_stop]
@@ -286,7 +286,7 @@ def render_scan_output(
                             print()
                     else:
                         print(
-                            f"Domain {i}: score={row.score:.3f} bit={bit_score:.2f} "
+                            f"Domain {i}: score={row.score:.2f} bit={bit_score:.2f} "
                             f"bias={bias:.2f} len={len_ratio:.2f}"
                         )
                         region_seq = sequence[start - 1:stop]
