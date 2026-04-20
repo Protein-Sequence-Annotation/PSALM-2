@@ -1,4 +1,11 @@
-# PSALM
+# PSALM 
+<a href="https://pepy.tech/projects/protein-sequence-annotation">
+  <img
+    src="https://static.pepy.tech/personalized-badge/protein-sequence-annotation?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREY&right_color=BLUE&left_text=Downloads"
+    alt="PyPI Downloads"
+    width="150"
+  >
+</a>
 
 PSALM predicts Pfam-style domain annotations on protein sequences using a language model. This document covers **inference** (running scans) and **training** (data prep and model training).
 
