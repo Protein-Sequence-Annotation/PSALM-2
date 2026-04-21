@@ -1,8 +1,8 @@
 # PSALM 
-[![preprint pdf](https://img.shields.io/badge/preprint-pdf-purple)](https://www.biorxiv.org/content/10.1101/2024.06.04.596712v3.full.pdf)
-[![PyPI protein-sequence-annotation 2.1.12](https://img.shields.io/badge/PyPI-protein--sequence--annotation%202.1.12-blue)](https://pypi.org/project/protein-sequence-annotation/)
+[![bioRxiv pdf](https://img.shields.io/badge/bioRxiv-pdf-purple)](https://www.biorxiv.org/content/10.1101/2024.06.04.596712v3.full.pdf)
+[![PyPI 2.1.12](https://img.shields.io/badge/PyPI-2.1.12-blue)](https://pypi.org/project/protein-sequence-annotation/)
 [![downloads](https://static.pepy.tech/personalized-badge/protein-sequence-annotation?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREY&right_color=BLUE&left_text=downloads)](https://pepy.tech/projects/protein-sequence-annotation)
-[![Hugging Face collection](https://img.shields.io/badge/Hugging%20Face-collection-yellow)](https://huggingface.co/collections/ProteinSequenceAnnotation/psalm-2)
+[![Hugging Face PSALM-2](https://img.shields.io/badge/Hugging%20Face-PSALM--2-yellow)](https://huggingface.co/collections/ProteinSequenceAnnotation/psalm-2)
 
 PSALM predicts Pfam-style domain annotations on protein sequences using a language model. This document covers **inference** (running scans) and **training** (data prep and model training).
 
