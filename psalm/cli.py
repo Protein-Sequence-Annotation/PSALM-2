@@ -83,7 +83,7 @@ def add_scan_arguments(parser: argparse.ArgumentParser) -> argparse.ArgumentPars
     scoring_group.add_argument(
         "-T",
         type=float,
-        default=0.5,
+        default=0.85,
         metavar="SCORE",
         dest="score_thresh",
         help="Minimum CBM score required to keep a domain hit.",

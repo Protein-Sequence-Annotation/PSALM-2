@@ -1,6 +1,6 @@
-# PSALM 
+# PSALM
 [![bioRxiv pdf](https://img.shields.io/badge/bioRxiv-pdf-purple)](https://www.biorxiv.org/content/10.1101/2024.06.04.596712v3.full.pdf)
-[![PyPI 2.1.12](https://img.shields.io/badge/PyPI-2.1.12-blue)](https://pypi.org/project/protein-sequence-annotation/)
+[![PyPI 2.1.13](https://img.shields.io/badge/PyPI-2.1.13-blue)](https://pypi.org/project/protein-sequence-annotation/)
 [![downloads](https://static.pepy.tech/personalized-badge/protein-sequence-annotation?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREY&right_color=BLUE&left_text=downloads)](https://pepy.tech/projects/protein-sequence-annotation)
 [![Hugging Face PSALM-2](https://img.shields.io/badge/Hugging%20Face-PSALM--2-yellow)](https://huggingface.co/collections/ProteinSequenceAnnotation/psalm-2)
 
@@ -34,10 +34,10 @@ PSALM predicts Pfam-style domain annotations on protein sequences using a langua
 
 1. Create a Python 3.10 environment and upgrade `pip`.
 2. Install [PyTorch](https://pytorch.org/get-started/locally/) for your hardware (CPU, CUDA, or Apple Silicon).
-3. Install PSALM from [PyPI](https://pypi.org/project/protein-sequence-annotation/) (pin the version you want, e.g. `2.1.12`):
+3. Install PSALM from [PyPI](https://pypi.org/project/protein-sequence-annotation/) (pin the version you want, e.g. `2.1.13`):
 
 ```bash
-python -m pip install protein-sequence-annotation==2.1.12
+python -m pip install protein-sequence-annotation==2.1.13
 ```
 
 4. Run a scan on a FASTA file:
@@ -82,7 +82,7 @@ python -m pip install torch
 #   torch
 
 # 2) Install PSALM
-python -m pip install protein-sequence-annotation==2.1.12
+python -m pip install protein-sequence-annotation==2.1.13
 ```
 
 If you are unsure which PyTorch command matches your GPU/driver, use the official selector: https://pytorch.org/get-started/locally/
@@ -96,7 +96,7 @@ conda activate psalm
 conda install -y -c conda-forge "llvmlite=0.44.*" "numba=0.61.*"
 conda install -y -c conda-forge "pytorch=2.5" torchvision torchaudio
 
-python -m pip install protein-sequence-annotation==2.1.12
+python -m pip install protein-sequence-annotation==2.1.13
 ```
 
 Run without activating the environment manually:
@@ -111,9 +111,25 @@ Defaults:
 
 - Default model: `ProteinSequenceAnnotation/PSALM-2`
 - Default device: `auto` (`cuda` → `mps` → `cpu`)
-- `-T`: keep domains with `Score >= threshold` (default: `0.5`)
+- `-T`: keep domains with `Score >= threshold` (default: `0.85`)
 - `-E`: keep domains with `E-value <= threshold` (default: `0.1`)
 - `-Z`: dataset size for E-value scaling; if omitted for `-s`, `Z=1`; if omitted for `-f`, `Z` = number of sequences in the FASTA
+
+### Choosing a score threshold
+
+PSALM reports a learned model **Score** for each domain call. Because this score is not derived from a formal statistical model, its relationship to false-positive rates was evaluated empirically using synthetic negative sequences.
+
+At the default threshold, `Score >= 0.85`, approximately `10^-4` false-positive domain calls per Pfam family were detected in our benchmark of 200,000 synthetic negative sequences (Fig. 3 of the manuscript). We therefore use `0.85` as a practical default that provides a useful balance between sensitivity and specificity. This empirical operating point should not be interpreted as a guaranteed false-positive rate.
+
+Users who require more stringent annotations may increase the threshold with `-T`. For reference, `Score >= 0.94` reproduces the PSALM operating point used in our UniProtKB coverage analysis, where PSALM achieved greater sequence and residue coverage than HMMER at a matched empirical E-value cutoff of `0.1`.
+
+```bash
+# Default threshold
+psalm-scan -f path/to/seqs.fa
+
+# More stringent threshold
+psalm-scan -T 0.94 -f path/to/seqs.fa
+```
 
 FASTA and fast mode:
 
